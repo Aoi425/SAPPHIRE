@@ -45,11 +45,11 @@ class SAPPHIRE:
         self.books_list.heading("Read Date", text="Read Date")
         self.books_list.heading("Note", text="Note")
 
-        self.books_list.column("No", width=50)
+        self.books_list.column("No", width=50, anchor="center")
         self.books_list.column("Title", width=300)
         self.books_list.column("Author", width=150)
         self.books_list.column("Classification", width=100)
-        self.books_list.column("Read Date", width=150)
+        self.books_list.column("Read Date", width=150, anchor="center")
         self.books_list.column("Note", width=350)
 
         self.books_list.grid(row=0, column=0)
