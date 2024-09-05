@@ -154,35 +154,63 @@ class SAPPHIRE:
         if data:
             edit_window = tk.Toplevel(self.root)
             edit_window.title("Edit Data")
+            edit_window.geometry("1200x650+10+10")
+
+            # Books title
+            label_title = tk.Label(edit_window, text="Title", width=20, height=2, bg="lightgray")
+            label_title.grid(row=0, column=0, padx=10, pady=10)
 
             input_title = tk.Entry(edit_window, width=56)
             input_title.insert(0, data[1])
-            input_title.pack()
+            input_title.grid(row=0, column=1, padx=10, pady=10, sticky="w")
+
+            # Author
+            label_author = tk.Label(edit_window, text="Author", width=20, height=2, bg="lightgray")
+            label_author.grid(row=1, column=0, padx=10, pady=10)
 
             input_author = tk.Entry(edit_window, width=56)
             input_author.insert(0, data[2])
-            input_author.pack()
+            input_author.grid(row=1, column=1, padx=10, pady=10, sticky="w")
+
+            # Classification
+            label_classification = tk.Label(edit_window, text="Classification", width=20, height=2, bg="lightgray")
+            label_classification.grid(row=2, column=0, padx=10, pady=10)
 
             input_classification = tk.StringVar()
             input_classification.set(data[3])
             option_classification = tk.OptionMenu(edit_window, input_classification, "Scrutiny", "Analysis", "Syntopical")
-            option_classification.pack()
+            option_classification.grid(row=2, column=1, padx=10, pady=10, sticky="w")
+
+            # Read Date
+            label_read_date = tk.Label(edit_window, text="Read Date", width=20, height=2, bg="lightgray")
+            label_read_date.grid(row=3, column=0, padx=10, pady=10)
 
             input_read_date = DateEntry(edit_window, width=20)
             input_read_date.set_date(data[4])
-            input_read_date.pack()
+            input_read_date.grid(row=3, column=1, padx=10, pady=10, sticky="w")
+
+            # Note
+            label_note = tk.Label(edit_window, text="Note", width=20, height=6, bg="lightgray")
+            label_note.grid(row=4, column=0, padx=10, pady=10)
 
             input_note = tk.Text(edit_window, width=56, height=6)
             input_note.insert("1.0", data[5])
-            input_note.pack()
+            input_note.grid(row=4, column=1, padx=10, pady=10, sticky="w")
 
-            update_button = tk.Button(edit_window, text="Update",
+            # Update button
+            update_button = tk.Button(edit_window, text="Update",width=15, height=2,
                                        command=lambda: self.update_data(data[0], input_title.get(), input_author.get(), input_classification.get(), input_read_date.get(), input_note.get("1.0", "end-1c")))
-            update_button.pack()
+            update_button.grid(row=5, column=0, padx=10, pady=10)
 
-            delete_button = tk.Button(edit_window, text="Delete",
+            # Delete button
+            delete_button = tk.Button(edit_window, text="Delete",width=15, height=2,
                                        command=lambda: self.delete_data(data[0]))
-            delete_button.pack()
+            delete_button.grid(row=5, column=1, padx=10, pady=10, sticky="w")
+
+            # Back button
+            back_button = tk.Button(edit_window, text="Back", width=15, height=2, command=edit_window.destroy)
+            back_button.grid(row=5, column=1, padx=10, pady=10, sticky="e")
+
 
     # Update Data
     def update_data(self, id, title, author, classification, read_date, note):
